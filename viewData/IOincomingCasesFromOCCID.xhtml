@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml"
+
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        <title>View Complaints</title>
+    </ui:define>
+
+    <ui:define name="body">
+        <p:accordionPanel multiple="true" >
+            <p:tab title="List Of Complaints" id="tab">
+                <h:form>
+                    <p:dataTable value="#{pendingCasesBacking.pendingCases}" var="complaint" scrollRows="20" scrollable="true" scrollHeight="65%" liveScroll="true" rowKey="#{complaint.id}" selection="#{pendingCasesBacking.selectedCases}" resizableColumns="true">
+                        <p:column selectionMode="multiple" style="width:4%"/>
+                        <p:column rendered="false">
+                            <p:inputText value="#{complaint.id}" />
+                        </p:column>
+                        <p:column headerText="Date Received">
+                            <h:outputText value="#{complaint.dateReceived}"/>
+                        </p:column>
+                        <p:column headerText="Case Ref">
+                            <h:outputText value="#{complaint.caseRef}"/>
+                        </p:column>
+                        <p:column headerText="Case Type">
+                            <h:outputText value="#{complaint.caseType}"/>
+                        </p:column>
+                        <p:column headerText="Complainant">
+                            <h:outputText value="#{complaint.complainant}"/>
+                        </p:column>
+                        <p:column headerText="Victim">
+                            <h:outputText value="#{complaint.victim}"/>
+                        </p:column>
+                        <p:column headerText="Accused">
+                            <h:outputText value="#{complaint.accused}"/>
+                        </p:column>
+
+                        <p:column headerText="Case Summary">
+                            <h:outputText value="#{complaint.caseSummary}"/>
+                        </p:column>
+                        <p:column headerText="Forward" width="5%">
+                            <p:graphicImage value="../resources/images/forwardCase.png"/> 
+                        </p:column>
+                        <f:facet name="footer" >
+                            <p:commandButton value="Forward Case to OC/CID" icon="ui-icon-search" onclick="cfd.show();"/>
+                            <p:dialog  id="forwardDialog" header="Forward Case to OC/CID Confirmation" widgetVar="cfd" closeOnEscape="true" hideEffect="drop" resizable="false">
+                                <h:outputText value="Are you sure you want to forward case to OC/CID?" />
+                                <p:separator/>          
+                                <p:commandButton id="caseForwardButton" value="Yes"  icon="ui-icon-disk" oncomplete="cfd.hide()"/>
+                                <p:commandButton value="No" onclick="cfd.hide();" type="button" icon="ui-icon-cancel" /> 
+                            </p:dialog>
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+        </p:accordionPanel> 
+    </ui:define>
+</ui:composition>
+

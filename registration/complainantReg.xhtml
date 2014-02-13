@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Complainant Registration</title>
+    </h:head>
+    <h:body>
+        <!--<h:form id="complainantreguuForm">-->
+        <!--<p:fieldset legend="Complainant Details" toggleable="true" toggleSpeed="100">--> 
+        <p:growl id="complainantMsg" />
+        <p:panel header="Complainant Details">
+            <br />
+            <p:panelGrid id="complainantregPG" columns="4">
+                <h:outputText id="complainantregFormfnOT" value="First Name:"/>
+                <p:inputText id="complainantregFormfnIT" value="#{complaintRegWizard.complainant.firstName}" size="30">
+                    <p:tooltip for="complainantregFormfnIT" value="Enter the First Name here" showEffect="slide" hideEffect="slide"/>
+                </p:inputText>
+                <h:outputText id="complainantregFormsnOT" value="Last Name:"/><p:inputText id="complainantregFormsnIT" value="#{complaintRegWizard.complainant.lastName}" size="30"/>
+                <h:outputText id="complainantregFormonOT" value="Other Name:"/><p:inputText id="complainantregFormonIT" value="#{complaintRegWizard.complainant.otherName}" size="30"/>
+                <h:outputText id="complainantregFormsexOT" value="Sex:"/>
+                <p:selectOneMenu id="complainantregFormsexSOM" value="#{complaintRegWizard.complainant.sex}">
+                    <f:selectItem id="complainantregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                    <f:selectItem id="complainantregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                    <f:selectItem id="complainantregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                </p:selectOneMenu>
+                <h:outputText id="complainantregFormtribeOT" value="Tribe:"/><p:inputText id="complainantregFormtribeIT" value="#{complaintRegWizard.complainant.tribe}"/>
+                <h:outputText id="complainantregFormdobOT" value="Date Of Birth:"/><p:calendar id="complainantregFormCal" pattern="yyyy-mm-dd" value="#{complaintRegWizard.complainant.dob}"/>
+                <h:outputText id="complainantregFormnationalityOT" value="Nationality:" /><p:inputText id="complainantregFormnationalityIT" value="#{complaintRegWizard.complainant.nationality}"/>
+                <h:outputText id="complainantregFormvillageOT" value="Village:" /><p:inputText id="complainantregFormvillageIT" value="#{complaintRegWizard.complainant.village}"/>
+                <h:outputText id="complainantregFormdistrictOT" value="District Of Residence:" />
+                <p:selectOneMenu id="complainantregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueComplainant}" required="true" >
+                    <f:selectItem itemLabel="Select" itemValue="#{null}"/>
+                    <f:selectItems id="complainantregFormdistrictselectSI" value="#{complaintRegWizard.selectItemDistricts}"/> 
+                </p:selectOneMenu>
+                <h:outputText id="complainantregFormeducationlevelOT" value="Education Level:"/><p:inputText id="complainantregFormeducationlevelIT" value="#{complaintRegWizard.complainant.educationLevel}"/>
+                <h:outputText id="complainantregFormprofessionOT" value="Proffession:" /><p:inputText id="complainantregFormprofessionIT" value="#{complaintRegWizard.complainant.proffession}"/>
+                <h:outputText id="complainantregFormmothernameOT" value="Mother's Name:"/><p:inputText id="complainantregFormmothernameIT" value="#{complaintRegWizard.complainant.motherName}" size="30"/>
+                <h:outputText id="complainantregFormfathernameOT" value="Father's Name:"/><p:inputText id="complainantregFormfathernameIT" value="#{complaintRegWizard.complainant.fatherName}" size="30"/>
+                <h:outputText id="complainantregFormstatementOT" value="Statement:"/><p:inputTextarea id="complainantregFormstatementTA" cols="30" rows="4" value="#{complaintRegWizard.complainant.statement}"/>
+            </p:panelGrid>
+            <br/>
+<!--            <p:commandButton id="saveComplainantButton" value="Save" actionListener="#//{complaintRegWizard.saveComplainant(actionEvent)}" update="complainantMsg"/><p:commandButton value="Clear Form"/><p:commandButton value="+ Add another Complainant"/>-->
+        </p:panel>
+        <!--</p:fieldset>-->
+        <!--</h:form>-->
+    </h:body>
+</html>
+

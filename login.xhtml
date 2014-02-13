@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="pfcrud.css"/>
+    </h:head>
+    <h:body style="background-color: #F1F1F1">
+        <p:layout fullPage="true">
+            <p:layoutUnit position="center">
+                <p:panel style=" margin-top: 50px">
+                    <p:growl id="msg" showDetail="true" life="6000"  />
+                    <p:dialog visible="true" closable="false" header="Login" resizable="false" draggable="true" style="border-radius: 0.8em; border-width: 10px; border-style: hidden;" >
+                        <p:panel style="border-color: #F1E6F0;display: inline-block; border-width: 0px">
+                            <p:graphicImage value="resources/images/JLOSLogo2.jpg"/>
+                        </p:panel>
+                        <p:panel style="border-color: #F1E6F0; display: inline-block; border-width: 0px">
+                            <h:outputText value="JLOS Justice Management " style="font-size: large; font-weight: bolder; color: purple" />
+                            <br/>
+                            <h:outputText value="Information System" style="font-size: large; font-weight: bolder; color: purple" />
+                        </p:panel>
+
+                        <p:panel style="border-color: #F1E6F0;display: inline-block; border-width: 0px">
+                            <p:graphicImage value="resources/images/uglogo.png"/><p:spacer width="20px"/>
+                        </p:panel>
+                        <p:separator/>
+                        <h:form id="loginForm">
+                            <p:panelGrid columns="2">
+                                <h:outputText value="Username: "/><p:inputText value="#{loginBacking.username}" style="border-radius: 0.8em; background: #feffff url(resources/images/loginInputLogo.png) no-repeat!important;padding: 15px 15px 15px 30px; background-position: 5px -2px !important;"/>
+                                <h:outputText value="Password: "/><p:password value="#{loginBacking.password}" feedback="true" required="true" style="border-radius: 0.8em; background: #feffff url(resources/images/loginInputLogo.png) no-repeat!important;padding: 15px 15px 15px 30px; background-position: 5px -52px !important;"/>
+                            </p:panelGrid>
+                        </h:form>
+                        <br />
+                        <p:commandButton value="Login" action="#{loginBacking.login()}" update="msg" style="width: 100px; height:50px;border-radius: 0.8em"/>
+                    </p:dialog>
+                </p:panel>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

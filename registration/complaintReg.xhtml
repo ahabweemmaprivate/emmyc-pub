@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body> 
+        <!--<h:form id="caseForm">-->
+        <!--<p:fieldset legend="Case Details" toggleable="true" toggleSpeed="100">-->
+
+        <p:panel header="Case Details">    
+            <p:growl id="caseRegMessage"/> 
+            <h:panelGroup layout="block" style="display: inline-table">
+                <p:panelGrid id="complaintRegPG" columns="2">
+                    <h:outputText id="sdrefnoOT" value="Station Diary Reference Number:"/><p:inputText value="#{complaintRegWizard.stationDiaryNumber} " size="20" readonly="true" style="background-color: ghostwhite"/>
+                    <h:outputText id="casetypeOT" value="Type of Case:"/>
+                    <p:selectOneMenu id="casetypeSOM" value="#{complaintRegWizard.caseTypeIdValue}" required="true">
+                        <f:selectItem itemLabel="Select" itemValue="#{null}" />
+                        <f:selectItems value="#{complaintRegWizard.selectItemCaseTypes}" />
+                    </p:selectOneMenu>
+                    <h:outputText id="caserefnoOT" value="Case Reference Number:"/><p:inputText value="#{complaintRegWizard.caseNumber} " size="20" readonly="true" style="background-color: ghostwhite"/>
+                    <h:outputText id="dateofincidenceOT" value="Date When Case Was Committed:"/><p:calendar id="dateofincidenceCal" pattern="yyyy-mm-dd" size="20" value="#{complaintRegWizard.complaint.dateOfIncidence}"/>
+                    <h:outputText id="timeofincidenceOT" value="Time When Case Was Committed:"/><p:calendar id="timeofincidenceCal" pattern="HH:mm" timeOnly="true" size="20" value="#{complaintRegWizard.complaint.timeOfIncidence}"/>
+                    <h:outputText id="placeofincidenceOT" value="Place Where Case Was Committed:"/><p:inputText id="placeofincidenceCal"  size="20" value="#{complaintRegWizard.complaint.placeOfIncidence}"/>
+                    <h:outputText id="casesummaryOT" value="Case Summary:"/><p:inputTextarea rows="4" cols="30" value="#{complaintRegWizard.complaint.caseSummary}"/>
+                    <h:outputText id="casedescriptionOT" value="Case Description:"/><p:inputTextarea rows="4" cols="30" value="#{complaintRegWizard.complaint.caseDescription}"/>
+                </p:panelGrid>
+            </h:panelGroup>
+            <p:spacer width="20px"/>
+            <!--<p:commandButton id="caseSaveButton" value="Save Case" actionListener="#//{complaintRegWizard.saveComplaint(actionEvent)}" update="caseRegMessage"/>-->    
+            <h:panelGroup layout="block" style="display: inline-table">
+                <p:selectBooleanCheckbox  itemLabel="&nbsp;&nbsp; Is Complainant Available?"/><br/><br/>
+                <p:selectBooleanCheckbox  itemLabel="&nbsp;&nbsp; Is Complainant the Victim?"/><br/><br/>
+                <p:selectBooleanCheckbox  itemLabel="&nbsp;&nbsp; Is Victim Available?"/><br/><br/>
+                <p:selectBooleanCheckbox  itemLabel="&nbsp;&nbsp; Is Accused Available?"/><br/><br/>
+                <p:selectBooleanCheckbox  itemLabel="&nbsp;&nbsp; Is Witness Available?"/>
+            </h:panelGroup>       
+        </p:panel>
+      <!--</p:fieldset>-->
+        <!--</h:form>-->
+    </h:body>
+</html>
+

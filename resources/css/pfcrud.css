@@ -1,0 +1,70 @@
+.ui-widget-content {
+    /*font-size: 12px !important;*/
+        background: #f3f2f5!important;
+    font-size: 100%!important;
+
+}
+.ui-layout-north {
+    z-index:20 !important;
+    overflow:visible !important;;
+    /*background-color: #D6D6D6;*/
+    text-align: center;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+    /*background-color: #B5D0E0;*/
+    /*color: #2F556A;*/
+    /*text-shadow: -1px 0 black, 0 1px white, 1px 0 white, 0 -1px black;*/
+    font-family: Segoe UI,Arial,sans-serif;
+}
+.ui-widget-header {
+    /*text-align: center;*/
+    /*text-transform: uppercase;*/ 
+}
+.ui-datatable-footer .ui-button{
+    float: left;
+}
+.ui-layout-south{
+    text-align: center;
+}
+.confirm-output-Details{
+    color: seagreen; 
+    font-weight: bold
+}
+.ui-growl{ 
+    left: 39%;
+    margin-top: 10%;
+}
+.ui-button{
+    /*background: #ffffff!important;*/ 
+}
+
+.ui-wizard-step-title{
+    font-size: 100%!important;
+}
+.ui-accordion-header{
+    font-size: 100%!important;
+}
+.ui-panelmenu-header{
+    font-size: 100%!important;
+}
+.ui-layout-unit-header{
+    font-size: 100%!important;
+    font-weight: normal!important;
+}
+.ui-widget input,
+.ui-inputtextarea,
+.ui-selectonemenu,
+.ui-selectonemenu-items{
+    background: #ffffff!important;
+    border-color: #822580!important;
+}
+.ui-datepicker-header,.ui-datepicker td{
+   font-size: 100%!important;
+   font-weight: normal!important;
+}
+.ui-datatable-even{
+    background-color: #DADADA!important;
+}
+
+

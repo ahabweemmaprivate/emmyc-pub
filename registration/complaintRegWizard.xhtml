@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml">
+    <ui:define name="title">
+        <title>Complaint Registration</title>
+
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="wizardForm">
+            <h:panelGroup style="margin-left: 40%"> 
+                <p:commandButton id="navigationBackButton" value="Back" onclick="wiz.back();"/>
+                <p:commandButton id="navigationNextButton" value="Next" onclick="wiz.next();"/>
+                
+                <p:growl id="caseSaveSuccessMsg" for="caseSaveButton" />
+                <p:growl id="caseForwardSuccessMsg" for="caseForwardButton"/>
+
+                <p:commandButton id="saveButton" value="Save" onclick="ccd.show();" icon="ui-icon-disk"/> 
+                <p:dialog  id="saveDialog" header="Confirm Save" widgetVar="ccd" closeOnEscape="true" hideEffect="drop" resizable="false">
+                    <h:outputText value="Are you sure you want to save case?" />
+                    <p:separator/>
+                    <p:commandButton id="caseSaveButton" value="Yes" actionListener="#{complaintRegWizard.saveComplaint(actionEvent)}" icon="ui-icon-disk" update="forwardButton,caseSaveSuccessMsg" oncomplete="ccd.hide()"/>
+                    <p:commandButton value="No" onclick="ccd.hide();" type="button" icon="ui-icon-cancel" /> 
+                </p:dialog>
+                
+                <p:commandButton id="forwardButton" value="Forward Case to O/C CID" onclick="cfd.show();" disabled="#{complaintRegWizard.enabledFowardButtonStatus}" /> 
+                <p:dialog  id="forwardDialog" header="Forward Case to OC/CID Confirmation" widgetVar="cfd" closeOnEscape="true" hideEffect="drop" resizable="false">
+                    <h:outputText value="Are you sure you want to forward case to OC/CID?" />
+                    <p:separator/>          
+                    <p:commandButton id="caseForwardButton" value="Yes" actionListener="#{complaintRegWizard.editForwardComplaint(actionEvent)}" icon="ui-icon-disk" update="caseForwardSuccessMsg" oncomplete="cfd.hide()"/>
+                    <p:commandButton value="No" onclick="cfd.hide();" type="button" icon="ui-icon-cancel" /> 
+                </p:dialog>
+            </h:panelGroup>
+            
+            <p:wizard id="complainantTabView" showNavBar="false" widgetVar="wiz"  >
+                <p:tab id="ComplaintRegTab" title="Case">
+                    <ui:include src="/registration/complaintReg.xhtml"/>  
+                </p:tab>
+
+                <p:tab id="complainantRegTab" title="Complainant" >
+                    <ui:include src="/registration/complainantReg.xhtml"/>
+                </p:tab>              
+
+                <p:tab id="VictimRegTab" title="Victim">
+                    <ui:include src="/registration/victimReg.xhtml"/>
+                </p:tab>
+
+                <p:tab id="AccusedRegTab" title="Accused">
+                    <ui:include src="/registration/accusedReg.xhtml"/>
+                </p:tab>
+
+                <p:tab id="WitnessRegTab" title="Witness">
+                    <ui:include src="/registration/witnessReg.xhtml"/>
+                </p:tab>
+                
+                <p:tab id="confirmTab" title="Confirm">
+                    <ui:include src="/registration/confirmReg.xhtml"/>
+                </p:tab>
+            </p:wizard>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="header">
+        <h:outputText value="Uganda Police Force" style="font-size: xx-large; font-weight: bolder" />
+        <br />
+        <h:outputText value="IJMIS" style="font-size: xx-large; font-weight: bolder" />
+        <br/>
+        <h:form>
+            <h:outputText value="Welcome " style="margin-left: 80%"/>
+            <h:outputText value="#{loginBacking.inSessionUsername}" style="color: green"/>
+            <h:commandLink value="Logout" style="color: red" action="#{loginBacking.logout()}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

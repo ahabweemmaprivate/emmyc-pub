@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Witness Registration</title>
+    </h:head>
+    <h:body>
+        <!--        <h:form id="witnessregForm">
+                    <p:fieldset legend="Victim Details" toggleable="true" toggleSpeed="100">-->
+        <p:panel header="Witness Details">
+            <p:panelGrid id="witnessregFormPG" columns="4" >
+                <h:outputText id="witnessregFormfnOT" value="First Name:"/><p:inputText id="witnessregFormfnIT" value="#{complaintRegWizard.witness.firstName}" size="30"/>
+                <h:outputText id="witnessregFormsnOT" value="Last Name:"/><p:inputText id="witnessregFormsnIT" value="#{complaintRegWizard.witness.lastName}" size="30"/>
+                <h:outputText id="witnessregFormonOT" value="Other Name:"/><p:inputText id="witnessregFormonIT" value="#{complaintRegWizard.witness.otherName}" size="30"/>
+                <h:outputText id="witnessregFormsexOT" value="Sex:"/>
+                <p:selectOneMenu id="witnessregFormsexSOM" value="#{complaintRegWizard.witness.sex}">
+                    <f:selectItem id="witnessregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                    <f:selectItem id="witnessregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                    <f:selectItem id="witnessregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                </p:selectOneMenu>
+                <h:outputText id="witnessregFormtribeOT" value="Tribe:"/><p:inputText id="witnessregFormtribeIT" value="#{complaintRegWizard.witness.tribe}"/>
+                <h:outputText id="witnessregFormdobOT" value="Date Of Birth:"/><p:calendar id="witnessregFormCal" pattern="yyyy-mm-dd" value="#{complaintRegWizard.witness.dob}"/>
+                <h:outputText id="witnessregFormnationalityOT" value="Nationality:" /><p:inputText id="witnessregFormnationalityIT" value="#{complaintRegWizard.witness.nationality}"/>
+                <h:outputText id="witnessregFormvillageOT" value="Village:" /><p:inputText id="witnessregFormvillageIT" value="#{complaintRegWizard.witness.village}"/>
+                <h:outputText id="witnessregFormdistrictOT" value="District Of Residence:" />
+                <p:selectOneMenu id="witnessregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueWitness}">
+                    <f:selectItem id="witnessregFormDistrictSI" itemLabel="Select" itemValue="#{null}"/>
+                    <f:selectItems id="witnessregFormdistrictselectSIs" value="#{complaintRegWizard.selectItemDistricts}" /> 
+                </p:selectOneMenu>
+                <h:outputText id="witnessregFormeducationlevelOT" value="Education Level:"/><p:inputText id="witnessregFormeducationlevelIT" value="#{complaintRegWizard.witness.educationLevel}"/>
+                <h:outputText id="witnessregFormprofessionOT" value="Proffession:" /><p:inputText id="witnessregFormprofessionIT" value="#{complaintRegWizard.witness.proffession}"/>
+                <h:outputText id="witnessregFormmothernameOT" value="Mother's Name:"/><p:inputText id="witnessregFormmothernameIT" value="#{complaintRegWizard.witness.motherName}" size="30"/>
+                <h:outputText id="witnessregFormfathernameOT" value="Father's Name:"/><p:inputText id="witnessregFormfathernameIT" value="#{complaintRegWizard.witness.fatherName}" size="30"/>
+                <h:outputText id="witnessregFormstatementOT" value="Statement:"/><p:inputTextarea id="witnessregFormstatementTA" cols="30" rows="4" value="#{complaintRegWizard.witness.statement}"/>
+            </p:panelGrid>
+            <br/>
+<!--            <p:commandButton value="Save"/><p:commandButton value="Clear Form"/><p:commandButton value="+ Add another Witness"/>-->
+        </p:panel>
+        <!--            </p:fieldset>
+</h:form>-->
+    </h:body>
+</html>
+

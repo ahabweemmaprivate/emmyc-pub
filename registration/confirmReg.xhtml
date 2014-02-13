@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <p:panel id="confirmPanel" header="Confirmation">
+<!--            <p:messages id="caseSaveSuccessMsg" for="caseSaveButton" closable="true"/>
+            <p:messages id="caseForwardSuccessMsg" for="caseForwardButton" closable="true"/>-->
+            <p:accordionPanel multiple="true">
+                <p:tab title="Complainant Details">
+                    <!--<h:outputText value="Complainant Details" style="color: #2F556A; font-weight: bold"/>-->
+                    <p:separator />
+                    <br />
+                    <p:panelGrid columns="6" >
+                        <h:outputText value="First Name: "/><h:outputText value="#{complaintRegWizard.complainant.firstName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Second Name: "/><h:outputText value="#{complaintRegWizard.complainant.lastName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Other Name: "/><h:outputText value="#{complaintRegWizard.complainant.otherName}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Sex: "/><h:outputText value="#{complaintRegWizard.complainant.sex}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Tribe: "/><h:outputText value="#{complaintRegWizard.complainant.tribe}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Date Of Birth: "/><h:outputText value="#{complaintRegWizard.complainant.dob}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Nationality: "/><h:outputText value="#{complaintRegWizard.complainant.nationality}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Village: "/><h:outputText value="#{complaintRegWizard.complainant.village}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="District: "/><h:outputText value="#{complaintRegWizard.districtComplainant.name}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Education Level: "/><h:outputText value="#{complaintRegWizard.complainant.educationLevel}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Proffession: "/><h:outputText value="#{complaintRegWizard.complainant.proffession}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Mother's Name: "/><h:outputText value="#{complaintRegWizard.complainant.motherName}" styleClass="confirm-output-Details"/>
+                    </p:panelGrid>
+                    <h:outputText value="Statement: "/><h:outputText value="#{complaintRegWizard.complainant.statement}" styleClass="confirm-output-Details"/>
+                </p:tab>
+
+                <p:tab title="Complaint Details">
+                    <p:panelGrid columns="4">
+                        <h:outputText value="Station Diary Number: "/><h:outputText value="#{complaintRegWizard.stationDiaryNumber}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Type of case: "/><h:outputText value="#{complaintRegWizard.caseType.caseType}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Case Reference: "/><h:outputText value="#{complaintRegWizard.caseNumber}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Date when case was Commited "/><h:outputText value="#{complaintRegWizard.complaint.dateOfIncidence}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Time When Case Was Committed:"/><h:outputText value="#{complaintRegWizard.complaint.timeOfIncidence}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Place Where Case Was Committed: "/><h:outputText value="#{complaintRegWizard.complaint.placeOfIncidence}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Case Summary: "/><h:outputText value="#{complaintRegWizard.complaint.caseSummary}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Case Description: "/><h:outputText value="#{complaintRegWizard.complaint.caseDescription}" styleClass="confirm-output-Details"/>
+                        
+                    </p:panelGrid>
+                </p:tab>
+
+                <p:tab title="Accused Details">
+                    <p:panelGrid columns="6">
+                        <h:outputText value="First Name: "/><h:outputText value="#{complaintRegWizard.accused.firstName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Second Name: "/><h:outputText value="#{complaintRegWizard.accused.lastName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Other Name: "/><h:outputText value="#{complaintRegWizard.accused.otherName}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Sex: "/><h:outputText value="#{complaintRegWizard.accused.sex}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Tribe: "/><h:outputText value="#{complaintRegWizard.accused.tribe}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Date Of Birth: "/><h:outputText value="#{complaintRegWizard.accused.dob}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Nationality: "/><h:outputText value="#{complaintRegWizard.accused.nationality}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Village: "/><h:outputText value="#{complaintRegWizard.accused.village}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="District: "/><h:outputText value="#{complaintRegWizard.districtAccused.name}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Education Level: "/><h:outputText value="#{complaintRegWizard.accused.educationLevel}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Proffession: "/><h:outputText value="#{complaintRegWizard.accused.proffession}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Mother's Name: "/><h:outputText value="#{complaintRegWizard.accused.motherName}" styleClass="confirm-output-Details"/>
+                    </p:panelGrid>
+                </p:tab>
+                <p:tab title="Witness Details">
+                    <p:panelGrid columns="6">
+                        <h:outputText value="First Name: "/><h:outputText value="#{complaintRegWizard.witness.firstName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Second Name: "/><h:outputText value="#{complaintRegWizard.witness.lastName}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Other Name: "/><h:outputText value="#{complaintRegWizard.witness.otherName}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Sex: "/><h:outputText value="#{complaintRegWizard.witness.sex}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Tribe: "/><h:outputText value="#{complaintRegWizard.witness.tribe}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Date Of Birth: "/><h:outputText value="#{complaintRegWizard.witness.dob}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Nationality: "/><h:outputText value="#{complaintRegWizard.witness.nationality}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Village: "/><h:outputText value="#{complaintRegWizard.witness.village}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="District: "/><h:outputText value="#{complaintRegWizard.districtWitness.name}" styleClass="confirm-output-Details"/>
+
+                        <h:outputText value="Education Level: "/><h:outputText value="#{complaintRegWizard.witness.educationLevel}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Proffession: "/><h:outputText value="#{complaintRegWizard.witness.proffession}" styleClass="confirm-output-Details"/>
+                        <h:outputText value="Mother's Name: "/><h:outputText value="#{complaintRegWizard.witness.motherName}" styleClass="confirm-output-Details"/>
+                    </p:panelGrid>
+                </p:tab>
+            </p:accordionPanel> 
+
+            <br />
+
+
+        </p:panel><!--            <p:commandButton type="button" onclick="ccd.show();" value="Save" icon="ui-icon-disk"/>        
+            <p:dialog  id="saveDialog" header="Confirm Save" widgetVar="ccd" closeOnEscape="true" hideEffect="drop" resizable="false">
+                <h:outputText value="Are you sure you want to save case?" />
+                <p:separator/>
+                <p:commandButton id="caseSaveButton" value="Yes" actionListener="#{complaintRegWizard.saveComplaint(actionEvent)}" icon="ui-icon-disk" update="forwardButton,caseSaveSuccessMsg" oncomplete="ccd.hide()"/>
+                <p:commandButton value="No" onclick="ccd.hide();" type="button" icon="ui-icon-cancel" /> 
+            </p:dialog>
+            
+            <p:commandButton id="forwardButton" value="Forward to OC/CID" onclick="cfd.show();" disabled="#{complaintRegWizard.enabledFowardButtonStatus}"/>
+            <p:dialog  id="forwardDialog" header="Forward Case to OC/CID Confirmation" widgetVar="cfd" closeOnEscape="true" hideEffect="drop" resizable="false">
+                <h:outputText value="Are you sure you want to forward case to OC/CID?" />
+                <p:separator/>          
+                <p:commandButton id="caseForwardButton" value="Yes" actionListener="#{complaintRegWizard.editForwardComplaint(actionEvent)}" icon="ui-icon-disk" update="caseForwardSuccessMsg" oncomplete="cfd.hide()"/>
+                <p:commandButton value="No" onclick="cfd.hide();" type="button" icon="ui-icon-cancel" /> 
+            </p:dialog>-->
+    </h:body>
+
+</html>
+

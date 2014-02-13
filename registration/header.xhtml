@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>IJMIS</title>
+    </h:head>
+    <h:body>
+        <h:panelGroup layout="block">
+            <br/>
+            <p:panel style="border-style: none; display: inline-block">
+                <p:graphicImage value="../resources/images/JLOSLogo.png"  style="height: 65px"/>
+            </p:panel>
+            <p:panel style="border-style: none; display: inline-block">
+                <p:spacer width="20px"/>
+                <h:outputText value="JLOS Justice Management Information System" style="font-size: larger; font-weight: bolder; color: purple" />
+                <br/>
+                <h:outputText value="#{loginBacking.institutionOfUser} - " style="font-size: large; font-weight: bolder;"/>
+                <h:outputText value="#{loginBacking.stationOfUser}" style="font-size: medium; font-weight: bolder;" />
+                <br/>
+            </p:panel>
+            <p:panel style="display: inline-block; border-style: none">
+                <p:graphicImage value="../resources/images/UgandaPoliceLogo.png" style="height: 65px;" /><p:spacer width="20px"/>
+            </p:panel>
+        </h:panelGroup>
+        <!--<h:panelGroup><p:clock pattern="HH:mm:ss dd-M-yyyy" mode="server" /></h:panelGroup>-->  
+        <h:form style="margin-left: 65%">
+            <h:outputText value="User: " style="color: purple"/>
+            <h:outputText value="#{loginBacking.nameOfUser}" style="font-size: medium"/>
+            <h:outputText value=" ( #{loginBacking.inSessionUsername} )" style="font-size: medium"/>
+            <p:commandLink value="Logout" style="color: purple;" action="#{loginBacking.logout()}" process="@this"/>
+        </h:form>
+    </h:body>
+</html>
+

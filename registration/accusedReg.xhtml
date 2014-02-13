@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Accused Registration</title>
+    </h:head>
+    <h:body>
+        <!--<h:form id="accusedregForm">-->
+        <!--<p:fieldset legend="Accused Details" toggleable="true" toggleSpeed="100">-->
+        <p:panel header="Accused Details">
+            <!--<p:commandButton value="Save"/><p:commandButton value="Clear Form"/><p:commandButton value="+ Add another Accused"/>-->
+            <p:panelGrid id="accusedregFormPG" columns="4" >
+                <h:outputText id="accusedregFormfnOT" value="First Name:"/><p:inputText id="accusedregFormfnIT" value="#{complaintRegWizard.accused.firstName}" size="30"/>
+                <h:outputText id="accusedregFormsnOT" value="Last Name:"/><p:inputText id="accusedregFormsnIT" value="#{complaintRegWizard.accused.lastName}" size="30"/>
+                <h:outputText id="accusedregFormonOT" value="Other Name:"/><p:inputText id="accusedregFormonIT" value="#{complaintRegWizard.accused.otherName}" size="30"/>
+                <h:outputText id="accusedregFormsexOT" value="Sex:"/>
+                <p:selectOneMenu id="accusedregFormsexSOM" value="#{complaintRegWizard.accused.sex}" required="true">
+                    <f:selectItem id="accusedregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                    <f:selectItem id="accusedregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                    <f:selectItem id="accusedregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                </p:selectOneMenu>
+                <h:outputText id="accusedregFormtribeOT" value="Tribe:"/><p:inputText id="accusedregFormtribeIT" value="#{complaintRegWizard.accused.tribe}"/>
+                <h:outputText id="accusedregFormdobOT" value="Date Of Birth:"/><p:calendar id="accusedregFormCal" pattern="yyyy-mm-dd" value="#{complaintRegWizard.accused.dob}"/>
+                <h:outputText id="accusedregFormnationalityOT" value="Nationality:" /><p:inputText id="accusedregFormnationalityIT" value="#{complaintRegWizard.accused.nationality}"/>
+                <h:outputText id="accusedregFormvillageOT" value="Village:" /><p:inputText id="accusedregFormvillageIT" value="#{complaintRegWizard.accused.village}"/>
+                <h:outputText id="accusedregFormdistrictOT" value="District Of Residence:" />
+                <p:selectOneMenu id="accusedregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueAccused}" >
+                    <f:selectItem itemLabel="Select" itemValue="#{null}"/>
+                    <f:selectItems id="accusedregFormdistrictselectSI" value="#{complaintRegWizard.selectItemDistricts}"/> 
+                </p:selectOneMenu>
+                <h:outputText id="accusedregFormeducationlevelOT" value="Education Level:"/><p:inputText id="accusedregFormeducationlevelIT" value="#{complaintRegWizard.accused.educationLevel}"/>
+                <h:outputText id="accusedregFormprofessionOT" value="Proffession:" /><p:inputText id="accusedregFormprofessionIT" value="#{complaintRegWizard.accused.proffession}"/>
+                <h:outputText id="accusedregFormmothernameOT" value="Mother's Name:"/><p:inputText id="accusedregFormmothernameIT" value="#{complaintRegWizard.accused.motherName}" size="30"/>
+                <h:outputText id="accusedregFormfathernameOT" value="Father's Name:"/><p:inputText id="accusedregFormfathernameIT" value="#{complaintRegWizard.accused.fatherName}" size="30"/>
+                <h:outputText id="accusedregFormstatementOT" value="Statement:"/><p:inputTextarea id="accusedregFormstatementTA" cols="30" rows="4" value="#{complaintRegWizard.accused.statement}"/>
+            </p:panelGrid>
+            <br/>
+<!--            <p:commandButton value="Save"/><p:commandButton value="Clear Form"/><p:commandButton value="+ Add another Accused"/>-->
+        </p:panel>
+        <!--</p:fieldset>-->
+        <!--</h:form>-->
+    </h:body>
+</html>
+

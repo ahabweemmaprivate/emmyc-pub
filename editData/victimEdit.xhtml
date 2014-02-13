@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Witness Registration</title>
+    </h:head>
+    <h:body>
+        <!--        <h:form id="victimRegForm">
+                    <p:fieldset legend="Victim Details" toggleable="true" toggleSpeed="100">-->
+        <p:panel header="Victim Details">
+            <p:panelGrid id="victimregFormPG" columns="4" >
+                <h:outputText id="victimregFormfnOT" value="First Name:"/><p:inputText id="victimregFormfnIT" value="#{complaintRegWizard.victim.firstName}" size="30"/>
+                <h:outputText id="victimregFormsnOT" value="Last Name:"/><p:inputText id="victimregFormsnIT" value="#{complaintRegWizard.victim.lastName}" size="30"/>
+                <h:outputText id="victimregFormonOT" value="Other Name:"/><p:inputText id="victimregFormonIT" value="#{complaintRegWizard.victim.otherName}" size="30"/>
+                <h:outputText id="victimregFormsexOT" value="Sex:"/>
+                <p:selectOneMenu id="victimregFormsexSOM" value="#{complaintRegWizard.victim.sex}">
+                    <f:selectItem id="victimregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                    <f:selectItem id="victimregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                    <f:selectItem id="victimregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                </p:selectOneMenu>
+                <h:outputText id="victimregFormtribeOT" value="Tribe:"/><p:inputText id="victimregFormtribeIT" value="#{complaintRegWizard.victim.tribe}"/>
+                <h:outputText id="victimregFormdobOT" value="Date Of Birth:"/><p:calendar id="victimregFormCal" pattern="yyyy-mm-dd" />
+                <h:outputText id="victimregFormnationalityOT" value="Nationality:" /><p:inputText id="victimregFormnationalityIT" value="#{complaintRegWizard.victim.nationality}"/>
+                <h:outputText id="victimregFormvillageOT" value="Village:" /><p:inputText id="victimregFormvillageIT" value="#{complaintRegWizard.victim.village}"/>
+                <h:outputText id="victimregFormdistrictOT" value="District of Residence:" />
+                <p:selectOneMenu id="victimregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueVictim}" required="true">
+                    <f:selectItem id="victimregFormDistrictSI" itemLabel="Select" itemValue="#{null}"/>
+                    <f:selectItems id="victimregFormdistrictselectSIs" value="#{complaintRegWizard.selectItemDistricts}" /> 
+                </p:selectOneMenu>
+                <h:outputText id="victimregFormeducationlevelOT" value="Education Level:"/><p:inputText id="victimregFormeducationlevelIT" value="#{complaintRegWizard.victim.educationLevel}"/>
+                <h:outputText id="victimregFormprofessionOT" value="Proffession:" /><p:inputText id="victimregFormprofessionIT" value="#{complaintRegWizard.victim.proffession}"/>
+                <h:outputText id="victimregFormmothernameOT" value="Mother's Name:"/><p:inputText id="victimregFormmothernameIT" value="#{complaintRegWizard.victim.motherName}" size="30"/>
+                <h:outputText id="victimregFormfathernameOT" value="Father's Name:"/><p:inputText id="victimregFormfathernameIT" value="#{complaintRegWizard.victim.fatherName}" size="30"/>
+                <h:outputText id="victimregFormstatementOT" value="Statement:"/><p:inputTextarea id="victimregFormstatementTA" cols="30" rows="4" value="#{complaintRegWizard.victim.statement}"/>
+            </p:panelGrid>
+            <br/>
+<!--            <p:commandButton value="Save"/><p:commandButton value="Clear Form"/><p:commandButton value="+ Add another Victim"/>-->
+        </p:panel>
+        <!--            </p:fieldset>
+</h:form>-->
+    </h:body>
+</html>

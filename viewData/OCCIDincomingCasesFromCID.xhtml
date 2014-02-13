@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml"
+
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        <title>View Complaints</title>
+    </ui:define>
+
+    <ui:define name="body">
+        <p:accordionPanel multiple="false">
+            <!--Pending cases to be Forwarded to O/C CID-->
+            <p:tab title="InComing Cases from O/C CID" id="tab">
+                <h:form id="f">
+                    <p:dataTable value="#{pendingCasesBacking.pendingCases}" var="complaint"  rowKey="#{complaint.id}" selection="#{pendingCasesBacking.selectedCase}" scrollRows="20" scrollable="true" scrollHeight="65%" liveScroll="true" resizableColumns="true">
+
+                        <p:column rendered="false">
+                        </p:column>
+                        <p:column selectionMode="single" style="width: 4% "/>
+                        <p:column headerText="Date Received">
+                            <h:outputText value="#{complaint.dateReceived}"/>
+                        </p:column>
+                        <p:column headerText="Case Ref">
+                            <h:outputText value="#{complaint.caseRef}"/>
+                        </p:column>
+                        <p:column headerText="Case Type">
+                            <h:outputText value="#{complaint.caseType}"/>
+                        </p:column>
+                        <p:column headerText="Complainant">
+                            <h:outputText value="#{complaint.complainant}"/>
+                        </p:column>
+                        <p:column headerText="Victim">
+                            <h:outputText value="#{complaint.victim}"/>
+                        </p:column>
+                        <p:column headerText="Accused">
+                            <h:outputText value="#{complaint.accused}"/>
+                        </p:column>
+
+                        <p:column headerText="Case Summary">
+                            <h:outputText value="#{complaint.caseSummary}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton icon="ui-icon-document" action="#{pendingCasesBacking.editPendingComplaint()}"/>
+                            <p:dialog id="editDialog" closeOnEscape="true" widgetVar="cfd">
+                                <h:outputText  value="#{pendingCasesBacking.selectedCase.caseRef}"/>
+                            </p:dialog> 
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+            <p:tab title="Case Details:  ro excpt charges">
+                <p:tabView id="complainantTabView" widgetVar="wiz"  >
+                    <p:tab id="ComplaintRegTab" title="Case">
+                        <p:panelGrid id="complaintRegPG" columns="2">
+                            <h:outputText id="sdrefnoOT" value="Station Diary Reference Number:"/><h:outputText value="#{complaintRegWizard.stationDiaryNumber} " style="background-color: ghostwhite"/>
+                            <h:outputText id="casetypeOT" value="Type of Case:"/>
+                            <p:selectOneMenu id="casetypeSOM" value="#{complaintRegWizard.caseTypeIdValue}" required="true">
+                                <f:selectItem itemLabel="Select" itemValue="#{null}" />
+                                <f:selectItems value="#{complaintRegWizard.selectItemCaseTypes}" />
+                            </p:selectOneMenu>
+                            <h:outputText id="caserefnoOT" value="Case Reference Number:"/><h:outputText value="#{complaintRegWizard.caseNumber} " style="background-color: ghostwhite"/>
+                            <h:outputText id="dateofincidenceOT" value="Date When Case Was Committed:"/><h:outputText id="dateofincidenceCal" value="#{complaintRegWizard.complaint.dateOfIncidence}"/>
+                            <h:outputText id="timeofincidenceOT" value="Time When Case Was Committed:"/><h:outputText id="timeofincidenceCal" value="#{complaintRegWizard.complaint.timeOfIncidence}"/>
+                            <h:outputText id="placeofincidenceOT" value="Place Where Case Was Committed:"/><h:outputText id="placeofincidenceCal" value="#{complaintRegWizard.complaint.placeOfIncidence}"/>
+                            <h:outputText id="casesummaryOT" value="Case Summary:"/><h:outputText value="#{complaintRegWizard.complaint.caseSummary}"/>
+                            <h:outputText id="casedescriptionOT" value="Case Description:"/><h:outputText value="#{complaintRegWizard.complaint.caseDescription}"/>
+                        </p:panelGrid>  
+                    </p:tab>
+
+                    <p:tab id="complainantRegTab" title="Complainant" >
+                        <p:panelGrid id="complainantregPG" columns="4">
+                            <h:outputText id="complainantregFormfnOT" value="First Name:"/>
+                            <h:outputText id="complainantregFormfnIT" value="#{complaintRegWizard.complainant.firstName}" />
+                            <h:outputText id="complainantregFormsnOT" value="Last Name:"/><h:outputText id="complainantregFormsnIT" value="#{complaintRegWizard.complainant.lastName}" />
+                            <h:outputText id="complainantregFormonOT" value="Other Name:"/><h:outputText id="complainantregFormonIT" value="#{complaintRegWizard.complainant.otherName}" />
+                            <h:outputText id="complainantregFormsexOT" value="Sex:"/>
+                            <p:selectOneMenu id="complainantregFormsexSOM" value="#{complaintRegWizard.complainant.sex}">
+                                <f:selectItem id="complainantregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                                <f:selectItem id="complainantregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem id="complainantregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                            </p:selectOneMenu>
+                            <h:outputText id="complainantregFormtribeOT" value="Tribe:"/><h:outputText id="complainantregFormtribeIT" value="#{complaintRegWizard.complainant.tribe}"/>
+                            <h:outputText id="complainantregFormdobOT" value="Date Of Birth:"/><h:outputText id="complainantregFormCal" value="#{complaintRegWizard.complainant.dob}"/>
+                            <h:outputText id="complainantregFormnationalityOT" value="Nationality:" /><h:outputText id="complainantregFormnationalityIT" value="#{complaintRegWizard.complainant.nationality}"/>
+                            <h:outputText id="complainantregFormvillageOT" value="Village:" /><h:outputText id="complainantregFormvillageIT" value="#{complaintRegWizard.complainant.village}"/>
+                            <h:outputText id="complainantregFormdistrictOT" value="District Of Residence:" />
+                            <p:selectOneMenu id="complainantregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueComplainant}" required="true" >
+                                <f:selectItem itemLabel="Select" itemValue="#{null}"/>
+                                <f:selectItems id="complainantregFormdistrictselectSI" value="#{complaintRegWizard.selectItemDistricts}"/> 
+                            </p:selectOneMenu>
+                            <h:outputText id="complainantregFormeducationlevelOT" value="Education Level:"/><h:outputText id="complainantregFormeducationlevelIT" value="#{complaintRegWizard.complainant.educationLevel}"/>
+                            <h:outputText id="complainantregFormprofessionOT" value="Proffession:" /><h:outputText id="complainantregFormprofessionIT" value="#{complaintRegWizard.complainant.proffession}"/>
+                            <h:outputText id="complainantregFormmothernameOT" value="Mother's Name:"/><h:outputText id="complainantregFormmothernameIT" value="#{complaintRegWizard.complainant.motherName}"/>
+                            <h:outputText id="complainantregFormfathernameOT" value="Father's Name:"/><h:outputText id="complainantregFormfathernameIT" value="#{complaintRegWizard.complainant.fatherName}"/>
+                            <h:outputText id="complainantregFormstatementOT" value="Statement:"/><h:outputText id="complainantregFormstatementTA" value="#{complaintRegWizard.complainant.statement}"/>
+                        </p:panelGrid>
+                    </p:tab>              
+
+                    <p:tab id="VictimRegTab" title="Victim">
+                        <p:panelGrid id="victimregFormPG" columns="4" >
+                            <h:outputText id="victimregFormfnOT" value="First Name:"/><h:outputText id="victimregFormfnIT" value="#{complaintRegWizard.victim.firstName}"/>
+                            <h:outputText id="victimregFormsnOT" value="Last Name:"/><h:outputText id="victimregFormsnIT" value="#{complaintRegWizard.victim.lastName}"/>
+                            <h:outputText id="victimregFormonOT" value="Other Name:"/><h:outputText id="victimregFormonIT" value="#{complaintRegWizard.victim.otherName}"/>
+                            <h:outputText id="victimregFormsexOT" value="Sex:"/>
+                            <p:selectOneMenu id="victimregFormsexSOM" value="#{complaintRegWizard.victim.sex}">
+                                <f:selectItem id="victimregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                                <f:selectItem id="victimregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem id="victimregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                            </p:selectOneMenu>
+                            <h:outputText id="victimregFormtribeOT" value="Tribe:"/><h:outputText id="victimregFormtribeIT" value="#{complaintRegWizard.victim.tribe}"/>
+                            <h:outputText id="victimregFormdobOT" value="Date Of Birth:"/><h:outputText id="victimregFormCal" />
+                            <h:outputText id="victimregFormnationalityOT" value="Nationality:" /><h:outputText id="victimregFormnationalityIT" value="#{complaintRegWizard.victim.nationality}"/>
+                            <h:outputText id="victimregFormvillageOT" value="Village:" /><h:outputText id="victimregFormvillageIT" value="#{complaintRegWizard.victim.village}"/>
+                            <h:outputText id="victimregFormdistrictOT" value="District of Residence:" />
+                            <p:selectOneMenu id="victimregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueVictim}" required="true">
+                                <f:selectItem id="victimregFormDistrictSI" itemLabel="Select" itemValue="#{null}"/>
+                                <f:selectItems id="victimregFormdistrictselectSIs" value="#{complaintRegWizard.selectItemDistricts}" /> 
+                            </p:selectOneMenu>
+                            <h:outputText id="victimregFormeducationlevelOT" value="Education Level:"/><h:outputText id="victimregFormeducationlevelIT" value="#{complaintRegWizard.victim.educationLevel}"/>
+                            <h:outputText id="victimregFormprofessionOT" value="Proffession:" /><h:outputText id="victimregFormprofessionIT" value="#{complaintRegWizard.victim.proffession}"/>
+                            <h:outputText id="victimregFormmothernameOT" value="Mother's Name:"/><h:outputText id="victimregFormmothernameIT" value="#{complaintRegWizard.victim.motherName}"/>
+                            <h:outputText id="victimregFormfathernameOT" value="Father's Name:"/><h:outputText id="victimregFormfathernameIT" value="#{complaintRegWizard.victim.fatherName}"/>
+                            <h:outputText id="victimregFormstatementOT" value="Statement:"/><h:outputText id="victimregFormstatementTA" value="#{complaintRegWizard.victim.statement}"/>
+                        </p:panelGrid>
+                    </p:tab>
+
+                    <p:tab id="AccusedRegTab" title="Accused">
+                        <p:panelGrid id="accusedregFormPG" columns="4" >
+                            <h:outputText id="accusedregFormfnOT" value="First Name:"/><h:outputText id="accusedregFormfnIT" value="#{complaintRegWizard.accused.firstName}" />
+                            <h:outputText id="accusedregFormsnOT" value="Last Name:"/><h:outputText id="accusedregFormsnIT" value="#{complaintRegWizard.accused.lastName}" />
+                            <h:outputText id="accusedregFormonOT" value="Other Name:"/><h:outputText id="accusedregFormonIT" value="#{complaintRegWizard.accused.otherName}" />
+                            <h:outputText id="accusedregFormsexOT" value="Sex:"/>
+                            <p:selectOneMenu id="accusedregFormsexSOM" value="#{complaintRegWizard.accused.sex}" required="true">
+                                <f:selectItem id="accusedregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                                <f:selectItem id="accusedregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem id="accusedregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                            </p:selectOneMenu>
+                            <h:outputText id="accusedregFormtribeOT" value="Tribe:"/><h:outputText id="accusedregFormtribeIT" value="#{complaintRegWizard.accused.tribe}"/>
+                            <h:outputText id="accusedregFormdobOT" value="Date Of Birth:"/><h:outputText id="accusedregFormCal" value="#{complaintRegWizard.accused.dob}"/>
+                            <h:outputText id="accusedregFormnationalityOT" value="Nationality:" /><h:outputText id="accusedregFormnationalityIT" value="#{complaintRegWizard.accused.nationality}"/>
+                            <h:outputText id="accusedregFormvillageOT" value="Village:" /><h:outputText id="accusedregFormvillageIT" value="#{complaintRegWizard.accused.village}"/>
+                            <h:outputText id="accusedregFormdistrictOT" value="District Of Residence:" />
+                            <p:selectOneMenu id="accusedregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueAccused}" >
+                                <f:selectItem itemLabel="Select" itemValue="#{null}"/>
+                                <f:selectItems id="accusedregFormdistrictselectSI" value="#{complaintRegWizard.selectItemDistricts}"/> 
+                            </p:selectOneMenu>
+                            <h:outputText id="accusedregFormeducationlevelOT" value="Education Level:"/><h:outputText id="accusedregFormeducationlevelIT" value="#{complaintRegWizard.accused.educationLevel}"/>
+                            <h:outputText id="accusedregFormprofessionOT" value="Proffession:" /><h:outputText id="accusedregFormprofessionIT" value="#{complaintRegWizard.accused.proffession}"/>
+                            <h:outputText id="accusedregFormmothernameOT" value="Mother's Name:"/><h:outputText id="accusedregFormmothernameIT" value="#{complaintRegWizard.accused.motherName}" />
+                            <h:outputText id="accusedregFormfathernameOT" value="Father's Name:"/><h:outputText id="accusedregFormfathernameIT" value="#{complaintRegWizard.accused.fatherName}"/>
+                            <h:outputText id="accusedregFormstatementOT" value="Statement:"/><h:outputText id="accusedregFormstatementTA" value="#{complaintRegWizard.accused.statement}"/>
+                        </p:panelGrid>
+                    </p:tab>
+
+                    <p:tab id="WitnessRegTab" title="Witness">
+                        <p:panelGrid id="witnessregFormPG" columns="4" >
+                            <h:outputText id="witnessregFormfnOT" value="First Name:"/><h:outputText id="witnessregFormfnIT" value="#{complaintRegWizard.witness.firstName}"/>
+                            <h:outputText id="witnessregFormsnOT" value="Last Name:"/><h:outputText id="witnessregFormsnIT" value="#{complaintRegWizard.witness.lastName}"/>
+                            <h:outputText id="witnessregFormonOT" value="Other Name:"/><h:outputText id="witnessregFormonIT" value="#{complaintRegWizard.witness.otherName}"/>
+                            <h:outputText id="witnessregFormsexOT" value="Sex:"/>
+                            <p:selectOneMenu id="witnessregFormsexSOM" value="#{complaintRegWizard.witness.sex}">
+                                <f:selectItem id="witnessregFormsexselectSI" itemLabel="Select" itemValue="Select"/>
+                                <f:selectItem id="witnessregFormsexmaleSI" itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem id="witnessregFormsexfemaleSI" itemLabel="Female" itemValue="Female"/>
+                            </p:selectOneMenu>
+                            <h:outputText id="witnessregFormtribeOT" value="Tribe:"/><h:outputText id="witnessregFormtribeIT" value="#{complaintRegWizard.witness.tribe}"/>
+                            <h:outputText id="witnessregFormdobOT" value="Date Of Birth:"/><h:outputText id="witnessregFormCal" value="#{complaintRegWizard.witness.dob}"/>
+                            <h:outputText id="witnessregFormnationalityOT" value="Nationality:" /><h:outputText id="witnessregFormnationalityIT" value="#{complaintRegWizard.witness.nationality}"/>
+                            <h:outputText id="witnessregFormvillageOT" value="Village:" /><h:outputText id="witnessregFormvillageIT" value="#{complaintRegWizard.witness.village}"/>
+                            <h:outputText id="witnessregFormdistrictOT" value="District Of Residence:" />
+                            <p:selectOneMenu id="witnessregFormdistrictSOM" value="#{complaintRegWizard.districtIdValueWitness}">
+                                <f:selectItem id="witnessregFormDistrictSI" itemLabel="Select" itemValue="#{null}"/>
+                                <f:selectItems id="witnessregFormdistrictselectSIs" value="#{complaintRegWizard.selectItemDistricts}" /> 
+                            </p:selectOneMenu>
+                            <h:outputText id="witnessregFormeducationlevelOT" value="Education Level:"/><h:outputText id="witnessregFormeducationlevelIT" value="#{complaintRegWizard.witness.educationLevel}"/>
+                            <h:outputText id="witnessregFormprofessionOT" value="Proffession:" /><h:outputText id="witnessregFormprofessionIT" value="#{complaintRegWizard.witness.proffession}"/>
+                            <h:outputText id="witnessregFormmothernameOT" value="Mother's Name:"/><h:outputText id="witnessregFormmothernameIT" value="#{complaintRegWizard.witness.motherName}"/>
+                            <h:outputText id="witnessregFormfathernameOT" value="Father's Name:"/><h:outputText id="witnessregFormfathernameIT" value="#{complaintRegWizard.witness.fatherName}"/>
+                            <h:outputText id="witnessregFormstatementOT" value="Statement:"/><h:outputText id="witnessregFormstatementTA" value="#{complaintRegWizard.witness.statement}"/>
+                        </p:panelGrid>
+                    </p:tab>
+                </p:tabView>
+            </p:tab>
+            <p:tab title="Assign Case to Investigating Officer">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Investigating Officer:"/>
+                    <h:panelGroup  style="display: inline-table">
+                        <p:selectOneMenu value="#{complaintRegWizard.districtIdValueWitness}">
+                            <f:selectItem id="witnessregFormDistrictSI1" itemLabel="Investigating Officer 1" itemValue="#{null}"/>
+                            <f:selectItem id="witnessregFormDistrictSI2" itemLabel="Investigating Officer 2" itemValue="#{null}"/>
+                            <f:selectItem id="witnessregFormDistrictSI3" itemLabel="Investigating Officer 3" itemValue="#{null}"/>
+                        </p:selectOneMenu>
+                        <p:spacer width="8px"/>
+                        <p:commandButton value="Officer's Schedule" onclick="attorneySchedule.show();"/>
+                        <p:dialog header="Attorney's Schedule" widgetVar="attorneySchedule" minimizable="true">
+                            <ui:include src="../viewData/OFFICERschedules.xhtml"/>
+                        </p:dialog>
+                    </h:panelGroup>
+                    <h:outputText value="Remarks"/>
+                    <p:inputTextarea value="" cols="40" scrollHeight="10"/> 
+                </p:panelGrid>
+                <p:separator/>
+                <p:commandButton value="Save"/><p:commandButton value="Cancel"/><p:commandButton value="Forward"/>
+            </p:tab>
+        </p:accordionPanel> 
+    </ui:define>
+</ui:composition>
+
